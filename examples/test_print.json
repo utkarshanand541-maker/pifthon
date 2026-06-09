@@ -1,0 +1,33 @@
+{
+  "configurations": {
+    "subject": "S",
+
+    "label": {
+      "owner": "S",
+      "readers": [
+        { "id": "S" }
+      ],
+      "writers": [
+        { "id": "S" }
+      ]
+    },
+
+    "global_vars": [
+      {
+        "id": "x",
+        "label": {
+          "owner": "S",
+          "readers": [
+            { "id": "S" }
+          ],
+          "writers": [
+            { "id": "S" }
+          ]
+        }
+      }
+    ],
+
+    "method_label": [],
+    "threads": []
+  }
+}

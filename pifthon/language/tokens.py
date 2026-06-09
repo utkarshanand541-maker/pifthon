@@ -29,6 +29,11 @@ ARGS        =   'ARGS'      # function arguments/parameters
 EARGS       =   'EARGS'     # denotes end of function arguments/parameters
 RETURN      =   'RETURN'    # denote return keyword
 DOWNGRADE   =   'DOWNGRADE' # denote the expression downgrade
+PRINT       =   'PRINT'
+SLEEP       =   'SLEEP'
+DELAY       =   'DELAY'
+AWAIT       =   'AWAIT'
+THEN        =   'THEN'
 
 # List of delimiters
 # SPACE       =   ' '         # ' '
@@ -151,6 +156,11 @@ token_expr = [
     (r'\]',         SRBRACKET),
     (r'\{',         CLBRACKET),
     (r'\}',         CRBRACKET),
+    (r'print',      PRINT),
+    (r'sleep',      SLEEP),
+    (r'delay',      DELAY),
+    (r'await',      AWAIT),
+    (r'then',       THEN),
 
     # Regex for float, integer or variable
     # (r'(\'[A-Za-z0-9]+\'|\"[A-Za-z0-9]+\")', STRING),

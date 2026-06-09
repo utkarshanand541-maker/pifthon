@@ -362,6 +362,23 @@ class Analyzer(NodeVisitor):
         temp.mainthread = False
         # import the python Thread module
         from threading import Thread
+        
+        
+    def visit_Print(self, node):
+        self.visit(node.expr)
+
+
+    def visit_Sleep(self, node):
+        self.visit(node.expr)
+
+
+    def visit_Delay(self, node):
+        self.visit(node.expr)
+
+
+    def visit_Await(self, node):
+        self.visit(node.condition)
+        self.visit(node.statement)
 
 
 

@@ -114,6 +114,23 @@ class Return(AST):
     def __init__(self, token, expr):
         self.token = token
         self.expr = expr
+        
+class Print(AST):
+    def __init__(self, expr):
+        self.expr = expr
+
+class Sleep(AST):
+    def __init__(self, expr):
+        self.expr = expr
+
+class Delay(AST):
+    def __init__(self, expr):
+        self.expr = expr
+
+class Await(AST):
+    def __init__(self, condition, statement):
+        self.condition = condition
+        self.statement = statement
 
 
 class Downgrade(AST):
@@ -575,6 +592,19 @@ class Parser:
         elif self.tokens[self.index].type == FDEF:
             self.match() # for FDEF
             return self.method_def()
+        
+        elif self.tokens[self.index].type == PRINT:
+            return self.print_statement()
+        
+        elif self.tokens[self.index].type == SLEEP:
+            return self.sleep_statement()
+        
+        elif self.tokens[self.index].type == DELAY:
+            return self.delay_statement()
+        
+        elif self.tokens[self.index].type == AWAIT:
+            return self.await_statement()
+    
         else:
             return None
         #     node = self.compund_statement()
@@ -620,3 +650,32 @@ class Parser:
 
     def parse(self):
         return self.program()
+    
+    def print_statement(self):
+        self.match()  # PRINT
+        self.match()  # LPAREN
+        expr = self.expr()
+        self.match()  # RPAREN
+        return Print(expr)
+
+    def sleep_statement(self):
+        self.match()  # SLEEP
+        self.match()  # LPAREN
+        expr = self.expr()
+        self.match()  # RPAREN
+        return Sleep(expr)
+
+    def delay_statement(self):
+        self.match()  # DELAY
+        self.match()  # LPAREN
+        expr = self.expr()
+        self.match()  # RPAREN
+        return Delay(expr)
+
+    def await_statement(self):
+        self.match()  # AWAIT
+        condition = self.condition()
+        self.match(THEN)
+        stmt = self.statement()
+        return Await(condition, stmt)
+            

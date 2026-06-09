@@ -82,8 +82,9 @@ def main(argv):
                     break
         try:
             temp_tokens = execute('<stdin>',statement, tokens, user_inputs)
-        except Exception:
-            quit()
+        except Exception as e:
+            print("Error",e)
+            raise 
         else:
             tokens += temp_tokens
             # print(tokens)
