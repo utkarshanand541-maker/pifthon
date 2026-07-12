@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Run Pifthon",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/pifthon/pifthon.py",
+            "args": [
+                "-j",
+                "examples/selection6.json",
+                "-i",
+                "examples/selection6.py"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

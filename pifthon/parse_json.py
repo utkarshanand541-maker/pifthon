@@ -21,7 +21,6 @@ class JSONParser:
         # methods = {'name':label}
         self.methods = self.getMethods(data)
         self.threads = self.getThreads(data)
-        self.parallel = self.getParallel(data)
         # a possible extension
         # self.parallel = None
 
@@ -118,12 +117,6 @@ class JSONParser:
             return None
         else:
             return threads
-        
-    def getParallel(self, data):
-        try:
-            return data["configurations"]["parallel"]
-        except KeyError:
-            return None
 
 
 

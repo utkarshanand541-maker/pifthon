@@ -1,5 +1,4 @@
 import sys
-import time
 from language.tokens import *
 from rwfm import Label
 from language.pyx_parser import *
@@ -359,33 +358,6 @@ class Interpreter(NodeVisitor):
         temp.mainthread = False
         # import the python Thread module
         from threading import Thread
-        
-    def visit_Print(self, node):
-        value = self.visit(node.expr)
-        print(value)
-        
-    def visit_Sleep(self, node):
-        value = self.visit(node.expr)
-
-        if isinstance(value, (int, float)):
-            time.sleep(value)
-
-        return None
-    
-    def visit_Delay(self, node):
-        value = self.visit(node.expr)
-
-        if isinstance(value, (int, float)):
-            time.sleep(value)
-
-        return None
-    
-    def visit_Await(self, node):
-
-        while not self.visit(node.condition):
-            pass
-
-        return self.visit(node.statement)
 
 
     def visit_Return(self, node):
